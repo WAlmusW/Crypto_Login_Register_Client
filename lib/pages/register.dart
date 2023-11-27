@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:crypto_login_register/validator/auth_validator.dart';
+import 'package:crypto_login_register/routes/app_routes.dart';
 import 'package:crypto_login_register/component/authentication/register_user.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -10,6 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
   late final TextEditingController _username;
   late final TextEditingController _password;
   late final TextEditingController _email;
@@ -42,11 +45,14 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextField(
+              TextFormField(
                 controller: _username,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: usernameValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your username here",
                   labelText: 'Username',
@@ -56,8 +62,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextField(
+              TextFormField(
                 controller: _password,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: passwordValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your password here",
                   labelText: 'Password',
@@ -68,8 +76,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextField(
+              TextFormField(
                 controller: _email,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: emailValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your email here",
                   labelText: 'Email',
@@ -80,8 +90,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextField(
+              TextFormField(
                 controller: _phone_number,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: phoneNumberValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your phone_number here",
                   labelText: 'Phone Number',
@@ -106,7 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   try {
                     RegisterService.registerUser(
                         username, password, email, phone_number);
-                    Navigator.pushNamed(context, '/dashboard');
+                    Navigator.pushNamed(context, AppRoutes.dashboardPage);
                   } catch (e) {
                     print("Register failed");
                   }

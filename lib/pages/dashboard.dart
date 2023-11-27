@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:crypto_login_register/component/dashboardTest/get_text.dart';
+import 'package:crypto_login_register/routes/app_routes.dart';
 import 'package:crypto_login_register/component/dashboardTest/post_text.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -98,7 +99,7 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.pushNamed(context, AppRoutes.loginPage);
                 },
                 child: Text('Logout'),
               ),

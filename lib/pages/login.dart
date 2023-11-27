@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:crypto_login_register/validator/auth_validator.dart';
+import 'package:crypto_login_register/routes/app_routes.dart';
 import 'package:crypto_login_register/component/authentication/login_user.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   late final TextEditingController _username;
   late final TextEditingController _password;
 
@@ -36,11 +39,14 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextField(
+              TextFormField(
                 controller: _username,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: usernameValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your username here",
                   labelText: 'Username',
@@ -50,8 +56,10 @@ class _LoginPageState extends State<LoginPage> {
                 autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextField(
+              TextFormField(
                 controller: _password,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: passwordValidator,
                 decoration: InputDecoration(
                   hintText: "Enter your password here",
                   labelText: 'Password',
@@ -75,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     LoginService.loginUser(username, password, (isLoggedIn) {
                       if (isLoggedIn) {
                         print('Login successful $isLoggedIn');
-                        Navigator.pushNamed(context, '/dashboard');
+                        Navigator.pushNamed(context, AppRoutes.dashboardPage);
                       } else {
                         print(
                             'Login failed. Check your username and password.');

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:crypto_login_register/routes/app_routes.dart';
 import 'package:crypto_login_register/pages/login.dart';
-import 'package:crypto_login_register/pages/dashboard.dart';
 import 'package:crypto_login_register/pages/register.dart';
 import 'package:crypto_login_register/component/authentication/check_registration.dart';
 
@@ -45,11 +45,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: homeWidget,
-      routes: {
-        '/register': (context) => RegisterPage(),
-        '/login': (context) => LoginPage(),
-        '/dashboard': (context) => DashboardPage(),
-      },
+      routes: AppRoutes.routes,
     );
   }
 }
