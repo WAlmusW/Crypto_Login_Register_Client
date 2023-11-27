@@ -32,6 +32,8 @@ String? phoneNumberValidator(String? value) {
 String? emailValidator(String? value) {
   if (value == null || value.isEmpty) {
     return 'This field is required';
+  } else if (value.contains(RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'))) {
+    return 'Please enter a valid email address';
   }
   return null;
 }
