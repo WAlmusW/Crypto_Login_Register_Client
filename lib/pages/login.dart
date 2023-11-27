@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:crypto_login_register/validator/auth_validator.dart';
 import 'package:crypto_login_register/routes/app_routes.dart';
+import 'package:crypto_login_register/widgets/username_field.dart';
+import 'package:crypto_login_register/widgets/password_field.dart';
 import 'package:crypto_login_register/component/authentication/login_user.dart';
 
 class LoginPage extends StatefulWidget {
@@ -43,32 +45,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
+              UsernameField(
                 controller: _username,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: usernameValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your username here",
-                  labelText: 'Username',
-                  prefixIcon: Icon(Icons.email),
-                ),
-                enableSuggestions: false,
-                autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextFormField(
-                controller: _password,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: passwordValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your password here",
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-              ),
+              PasswordField(
+                  controller: _password, validator: passwordValidator),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

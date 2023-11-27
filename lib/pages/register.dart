@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:crypto_login_register/validator/auth_validator.dart';
 import 'package:crypto_login_register/routes/app_routes.dart';
+import 'package:crypto_login_register/widgets/username_field.dart';
+import 'package:crypto_login_register/widgets/password_field.dart';
+import 'package:crypto_login_register/widgets/email_field.dart';
+import 'package:crypto_login_register/widgets/phone_number_field.dart';
 import 'package:crypto_login_register/component/authentication/register_user.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -49,60 +53,18 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
+              UsernameField(
                 controller: _username,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: usernameValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your username here",
-                  labelText: 'Username',
-                  prefixIcon: Icon(Icons.person),
-                ),
-                enableSuggestions: false,
-                autocorrect: false,
               ),
               SizedBox(height: 20),
-              TextFormField(
-                controller: _password,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: passwordValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your password here",
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-              ),
+              PasswordField(
+                  controller: _password, validator: passwordValidator),
               SizedBox(height: 20),
-              TextFormField(
-                controller: _email,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: emailValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your email here",
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.mail),
-                ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-              ),
+              EmailField(controller: _email, validator: emailValidator),
               SizedBox(height: 20),
-              TextFormField(
-                controller: _phone_number,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: phoneNumberValidator,
-                decoration: InputDecoration(
-                  hintText: "Enter your phone_number here",
-                  labelText: 'Phone Number',
-                  prefixIcon: Icon(Icons.phone),
-                ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-              ),
+              PhoneNumberField(
+                  controller: _phone_number, validator: phoneNumberValidator),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
